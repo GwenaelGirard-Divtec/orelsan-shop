@@ -41,6 +41,9 @@ export default {
     --bleu: #322783;
     --red: #d51125;
     --green: #00963f;
+
+    --info-height: 30px;
+    --header-height: 75px;
 }
 
 * {
@@ -50,7 +53,7 @@ export default {
 
 body {
     position: relative;
-    padding-top: 8em;
+    padding-top: calc(var(--header-height) + var(--info-height));
     background-color: var(--white);
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */

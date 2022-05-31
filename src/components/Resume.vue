@@ -14,14 +14,16 @@
             <td class="com-image"><img :src="disque.img" :alt="disque.titre"></td>
             <td class="com-titre">{{ disque.titre }}</td>
             <td class="com-qte">{{ disque.qtyAchat }}</td>
-            <td class="com-prix-unit">{{ getPrix(disque.prix, 1) }}</td>
-            <td class="com-prix">{{ getPrix(disque.prix, disque.qtyAchat) }}</td>
+            <td class="com-prix-unit">{{ getPrix(disque.prix, 1) }} CHF</td>
+            <td class="com-prix">{{ getPrix(disque.prix, disque.qtyAchat) }} CHF</td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="4">Total :</td>
-            <td>{{getPrixTotalPanier}}</td>
+            <td colspan="2">Total :</td>
+            <td style="text-align: center">{{ this.$store.getters.getQtePanier }}</td>
+            <td></td>
+            <td style="text-align: center">{{this.$store.getters.getPrixPanier}} CHF</td>
         </tr>
         </tfoot>
     </table>
@@ -60,6 +62,10 @@ export default {
 
     td, th{
         padding: 1em 0;
+    }
+
+    tfoot {
+        font-weight: bold;
     }
 
     .com-image {

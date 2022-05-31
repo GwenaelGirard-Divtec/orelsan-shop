@@ -1,29 +1,31 @@
 <template>
     <div class="panier">
         <div class="article-wrapper" v-if="this.$store.state.panier.length !== 0">
-            <table class="articles-panier">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th class="article-titre">Titre</th>
-                    <th class="article-qte">Qte</th>
-                    <th class="article-prix">Prix</th>
-                    <th></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr v-for="disque in this.$store.state.panier" class="article" :key="this.titre">
-                    <td class="article-image" :style="{backgroundImage: setImageArticle(disque.img)}"></td>
-                    <td class="article-titre">{{ disque.titre }}</td>
-                    <td class="article-qte">{{ disque.qtyAchat }}</td>
-                    <td class="article-prix">{{ getPrix(disque.prix, disque.qtyAchat) }} CHF</td>
-                    <td class="article-suppr" @click="this.$store.commit('retirerPanier', disque)"><span class="material-icons">close</span></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="articles">
+                <div class="article header">
+                    <div class="article-titre">Titre</div>
+                    <div class="article-qte-unit">Qte.</div>
+                    <div class="article-prix">Prix unit.</div>
+                    <div class="article-qte">Prix</div>
+                    <div class="article-suppr"></div>
+                </div>
 
 
+                <div class="article" v-for="disque in this.$store.state.panier">
+                    <div class="article-image" :style="{backgroundImage: setImageArticle(disque.img)}"></div>
+                    <div class="article-titre">{{ disque.titre }}</div>
+                    <div class="article-qte-unit">{{disque.qtyAchat}}</div>
+                    <div class="article-prix">{{disque.prix.toPrecision(4)}} CHF</div>
+                    <div class="article-qte">{{this.getPrix(disque.prix, disque.qtyAchat)}} CHF</div>
+                    <div class="article-suppr" @click="this.$store.commit('retirerPanier', disque)"><span class="material-icons">close</span></div>
+                </div>
+
+                <div class="article footer">
+                    <div class="article-titre">Total : </div>
+                    <div class="article-qte">{{ this.$store.getters.getQtePanier }}</div>
+                    <div class="article-prix">{{ this.$store.getters.getPrixPanier }} CHF</div>
+                </div>
+            </div>
 
             <Button01 @click="this.commande">Passer la commande</Button01>
 
@@ -80,52 +82,68 @@ export default {
     display: none;
 }
 
-
-.articles-panier {
-    border-collapse: collapse;
-    width: 100%;
-    text-align: left;
-    margin-bottom: 2rem;
+.articles {
+    margin: 1em 0;
 }
 
-.article-wrapper {
-    width: 100%;
-}
-
-.article td {
-    transition: all 200ms ease-in-out;
-}
-
-.articles-panier .article {
-    border-top: white 2px solid;
-    border-bottom: white 2px solid;
+.article {
+    display: grid;
+    grid-template-columns: 75px 3fr .5fr 1.7fr 1.7fr .5fr;
     height: 75px;
+    border-top: white 1px solid;
+    border-bottom: white 1px solid;
 }
+
+.article.header {
+    height: 32px;
+    border: none;
+    font-weight: bold;
+}
+
+.article.header .article-titre{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.article div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .article-image {
-    width: 15%;
-    background-size: contain;
+    background-size: calc(100% - 1em);
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.article-titre {
-    width: 55%;
-    padding-left: .5rem;
+.article div.article-titre {
+    justify-content: flex-start;
 }
 
-.article-qte {
-    width: 10%;
-    text-align: center;
+.article div.article-suppr:hover {
+    cursor: pointer;
 }
 
-.article-prix {
-    width: 20%;
-    text-align: center;
+.article.footer {
+    height: 32px;
+    border: none;
+    font-weight: bold;
 }
 
-.article-suppr {
-    width: 32px;
-    text-align: center;
+.article.footer .article-titre {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.article.footer .article-qte {
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.article.footer .article-prix {
+    grid-column-start: 5;
+    grid-column-end: 6;
 }
 
 /* The animation code */

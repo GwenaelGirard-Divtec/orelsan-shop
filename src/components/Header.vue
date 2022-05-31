@@ -1,6 +1,6 @@
 <template>
     <header>
-        <span class="avertissement">1 seul exemplaire de chaque édition par commande.</span>
+        <span class="avertissement">{{this.$store.state.maxQtyAchat}} exemplaire{{this.$store.state.maxQtyAchat > 1 ? "s" : ""}} de chaque édition par commande.</span>
         <div class="header">
             <h1 style="display: none;">Orelsan Shop Civilisation New Album</h1>
             <div class="icone-civ"></div>
@@ -46,16 +46,17 @@ export default {
     }
 
     .avertissement {
-        display: block;
-        padding: .25em 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
         background-color: white;
-        text-align: center;
+        height: var(--info-height);
     }
 
     .header {
         background-color: var(--black);
-        height: 75px;
+        height: var(--header-height);
         padding: .5rem;
         display: flex;
         align-items: center;
@@ -89,8 +90,8 @@ export default {
         transition: all 200ms ease-in-out;
     }
 
-    .header .panier-apercu:hover {
-        transform: scale(1.1);
+    .header .panier-apercu span:hover {
+        cursor: pointer;
     }
 
     .header .panier-apercu span {

@@ -20,6 +20,8 @@ export default createStore({
       {id: 15, titre: 'Civilisation', qte: 30000, img: '/rondelles/15_800px.png',prix: 15.50, dispo: true},
     ],
 
+    maxQtyAchat: 5,
+
     panier: [],
 
     panierEtat: false,
@@ -46,7 +48,7 @@ export default createStore({
   },
   mutations: {
     ajouterPanier(state, disque){
-      if((disque.qtyAchat < 1 || disque.qtyAchat === undefined) && disque.dispo) {
+      if((disque.qtyAchat < state.maxQtyAchat || disque.qtyAchat === undefined) && disque.dispo) {
         let contains = false;
 
         state.panier.forEach(item => {
@@ -71,10 +73,11 @@ export default createStore({
         let index = state.panier.indexOf(disque)
         let articleListe = document.querySelector(".article:nth-child("+ (index+1) +")")
         articleListe.classList.add('anim')
-        setTimeout(wait, 300)
+        setTimeout(wait, 200)
 
         function wait() {
           state.panier.splice(index, 1)
+          disque.qtyAchat = 0;
           articleListe.classList.remove('anim')
         }
       }

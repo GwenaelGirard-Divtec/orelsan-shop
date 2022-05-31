@@ -1,8 +1,8 @@
 <template>
     <div class="disques">
         <div class="magasin">
-            <div v-for="disque in this.$store.state.disques" class="disque" :key="this.id">
-                <router-link :to="{ name: '/disque', params: { id: `${disque}` } }" class="disque-detail-link">
+            <div v-for="disque in this.$store.state.disques" class="disque">
+                <router-link :to="{ name: '/disque', params: { id: `${disque.id}` } }" class="disque-detail-link">
                     <div v-if="!disque.dispo" class="sold-out">Sold Out</div>
                     <img :src="disque.img" :alt="disque.titre">
                     <h3 class="disque-titre">{{disque.titre}}</h3>

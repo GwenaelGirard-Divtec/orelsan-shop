@@ -1,5 +1,6 @@
 <template>
   <div class="commande">
+    <Back></Back>
     <h2>Résumé de votre commande : </h2>
     <Resume />
   </div>
@@ -8,11 +9,19 @@
 <script>
 
 import Resume from '@/components/Resume.vue'
+import Back from '@/components/Back.vue'
 
 export default {
     name: 'Commande',
     components: {
-        Resume
+        Resume,
+        Back
+    },
+
+    mounted() {
+        if(this.$store.state.panier.length === 0) {
+            this.$router.push('/')
+        }
     }
 }
 </script>
@@ -20,8 +29,15 @@ export default {
 <style scoped>
 
 .commande {
-    width: 75%;
+    position: relative;
+    width: 100%;
+    padding: 2em 20%;
+    height: calc(100vh - (var(--header-height) + var(--info-height)));
     margin: 0 auto;
+}
+
+.commande h2 {
+    margin:0;
 }
 
 </style>

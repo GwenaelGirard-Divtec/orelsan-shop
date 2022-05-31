@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Magasin from '../views/Magasin.vue'
+import DetailsDisque from '../views/DetailsDisque.vue'
 
 const routes = [
   {
@@ -18,8 +19,7 @@ const routes = [
   {
     path: '/disque/:id',
     name: '/disque',
-    component: () => import(/* webpackChunkName: "commande" */ '../views/DetailsDisque.vue'),
-    props: true
+    component: DetailsDisque,
   }
 ]
 
