@@ -1,30 +1,67 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <Header />
+    <router-view/>
 </template>
 
+<script>
+
+import Header from '@/components/Header.vue'
+
+export default {
+    name: "App",
+    components: {
+        Header,
+    }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url('https://fonts.googleapis.com/css2?family=Outfit&family=Romanesco&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url("https://necolas.github.io/normalize.css/8.0.1/normalize.css");
+
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('./assets/fonts/GaramondLT-LightCondensedItalic.woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-nav {
-  padding: 30px;
+.Garamond {
+    font-family: Garamond,sans-serif;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+
+:root {
+    --white: rgb(224, 220, 211);
+    --whiteTrans: rgba(224, 220, 211, 0.7);
+    --black : rgb(25, 25, 25);
+    --blackTrans : rgba(25, 25, 25, 0.9);
+    --bleu: #322783;
+    --red: #d51125;
+    --green: #00963f;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+* {
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
 }
+
+body {
+    position: relative;
+    padding-top: 8em;
+    background-color: var(--white);
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.material-icons {
+    user-select: none;
+}
+
 </style>
