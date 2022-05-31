@@ -34,8 +34,8 @@ export default {
 
 
 :root {
-    --white: rgb(224, 220, 211);
-    --whiteTrans: rgba(224, 220, 211, 0.7);
+    --white: rgb(237, 237, 237);
+    --whiteTrans: rgba(237, 237, 237, 0.7);
     --black : rgb(25, 25, 25);
     --blackTrans : rgba(25, 25, 25, 0.9);
     --bleu: #322783;
@@ -43,7 +43,7 @@ export default {
     --green: #00963f;
 
     --info-height: 30px;
-    --header-height: 75px;
+    --header-height: 100px;
 }
 
 * {
@@ -53,7 +53,7 @@ export default {
 
 body {
     position: relative;
-    padding-top: calc(var(--header-height) + var(--info-height));
+    margin-top: calc(var(--header-height) + var(--info-height));
     background-color: var(--white);
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */

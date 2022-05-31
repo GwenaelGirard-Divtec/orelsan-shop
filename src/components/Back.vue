@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .back {
     position: fixed;
-    top: 100px;
+    top: 150px;
     left: 0;
     padding: 10px;
     cursor: pointer;

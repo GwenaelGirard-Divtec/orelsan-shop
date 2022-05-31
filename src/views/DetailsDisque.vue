@@ -6,6 +6,7 @@
     <div v-if="this.disque !== undefined">
         <div class="disque-infos">
             <h2>{{disque.titre}}</h2>
+            <hr>
             <div class="disque-infos-sub">
                 <span class="disuqe-qte">{{disque.qte}} Ex.</span>
                 <span class="disque-prix">{{disque.prix.toPrecision(4)}} CHF</span>
@@ -78,6 +79,11 @@ export default {
         margin: 2em 2em;
         min-width: 200px;
         color: var(--white);
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid var(--white);
     }
 
     .disque-infos h2 {

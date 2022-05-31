@@ -32,7 +32,7 @@ export default {
             if(this.$store.state.panierEtat) {
                 stylePanier = "0"
             } else {
-                stylePanier = "-500px"
+                stylePanier = "-550px"
             }
 
             return stylePanier;
@@ -53,11 +53,18 @@ export default {
 
     .panier {
         position: fixed;
-        width: 500px;
+        z-index: 200;
+        width: 550px;
         top:0;
         height: calc(100% - 100px);
-        margin-top: 100px;
+        margin-top: calc(var(--header-height) + var(--info-height));
         transition: all 200ms ease-in-out;
         overflow: hidden;
+    }
+
+    @media screen and (max-width: 550px) {
+        .panier {
+            width: 100%;
+        }
     }
 </style>

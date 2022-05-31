@@ -3,15 +3,15 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     disques: [
-      {id: 1, titre: 'Shonen', qte: 5000, img: '/rondelles/01_800px.png',prix: 15.50, dispo: true},
-      {id: 2, titre: 'La Quête', qte: 500, img: '/rondelles/02_800px.png',prix: 15.50, dispo: false},
-      {id: 3, titre: 'Du Propre', qte: 30000, img: '/rondelles/03_800px.png',prix: 15.50, dispo: true},
-      {id: 4, titre: 'Bébéboa', qte: 30000, img: '/rondelles/04_800px.png',prix: 15.50, dispo: false},
-      {id: 5, titre: 'Rêve Mieux', qte: 30000, img: '/rondelles/05_800px.png',prix: 15.50, dispo: true},
-      {id: 6, titre: 'Seul Avec du Monde Autour', qte: 30000, img: '/rondelles/06_800px.png',prix: 15.50, dispo: true},
-      {id: 7, titre: 'Manifeste', qte: 30000, img: '/rondelles/07_800px.png',prix: 15.50, dispo: true},
-      {id: 8, titre: "L'Odeur de l'Essence", qte: 30000, img: '/rondelles/08_800px.png',prix: 15.50, dispo: true},
-      {id: 9, titre: 'Jour Meilleur', qte: 30000, img: '/rondelles/09_800px.png',prix: 15.50, dispo: true},
+      {id: 1,  titre: 'Shonen', qte: 5000, img: '/rondelles/01_800px.png',prix: 15.50, dispo: true},
+      {id: 2,  titre: 'La Quête', qte: 500, img: '/rondelles/02_800px.png',prix: 15.50, dispo: false},
+      {id: 3,  titre: 'Du Propre', qte: 30000, img: '/rondelles/03_800px.png',prix: 15.50, dispo: false},
+      {id: 4,  titre: 'Bébéboa', qte: 30000, img: '/rondelles/04_800px.png',prix: 15.50, dispo: false},
+      {id: 5,  titre: 'Rêve Mieux', qte: 30000, img: '/rondelles/05_800px.png',prix: 15.50, dispo: true},
+      {id: 6,  titre: 'Seul Avec du Monde Autour', qte: 30000, img: '/rondelles/06_800px.png',prix: 15.50, dispo: true},
+      {id: 7,  titre: 'Manifeste', qte: 30000, img: '/rondelles/07_800px.png',prix: 15.50, dispo: true},
+      {id: 8,  titre: "L'Odeur de l'Essence", qte: 30000, img: '/rondelles/08_800px.png',prix: 15.50, dispo: true},
+      {id: 9,  titre: 'Jour Meilleur', qte: 30000, img: '/rondelles/09_800px.png',prix: 15.50, dispo: true},
       {id: 10, titre: 'Baise le Monde', qte: 30000, img: '/rondelles/10_800px.png',prix: 15.50, dispo: false},
       {id: 11, titre: 'Casseur Flowters Infinty', qte: 30000, img: '/rondelles/11_800px.png',prix: 15.50, dispo: true},
       {id: 12, titre: 'Dernier Verre', qte: 30000, img: '/rondelles/12_800px.png',prix: 15.50, dispo: true},
@@ -20,7 +20,7 @@ export default createStore({
       {id: 15, titre: 'Civilisation', qte: 30000, img: '/rondelles/15_800px.png',prix: 15.50, dispo: true},
     ],
 
-    maxQtyAchat: 5,
+    maxQtyAchat: 1,
 
     panier: [],
 
@@ -66,19 +66,18 @@ export default createStore({
       }
     },
 
-    retirerPanier(state, disque) {
+    retirerPanier(state, {disque, element}) {
       if (disque.qtyAchat > 1) {
         disque.qtyAchat --;
       } else {
         let index = state.panier.indexOf(disque)
-        let articleListe = document.querySelector(".article:nth-child("+ (index+1) +")")
-        articleListe.classList.add('anim')
+        element.classList.add('disque-suppr-anim')
         setTimeout(wait, 200)
 
         function wait() {
           state.panier.splice(index, 1)
           disque.qtyAchat = 0;
-          articleListe.classList.remove('anim')
+          element.classList.remove('disque-suppr-anim')
         }
       }
     },

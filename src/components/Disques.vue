@@ -1,14 +1,16 @@
 <template>
-    <div class="disques">
+    <div class="disques" :style="{pointerEvents: this.pointerEvents}">
         <div class="magasin">
             <div v-for="disque in this.$store.state.disques" class="disque">
                 <router-link :to="{ name: '/disque', params: { id: `${disque.id}` } }" class="disque-detail-link">
                     <div v-if="!disque.dispo" class="sold-out">Sold Out</div>
                     <img :src="disque.img" :alt="disque.titre">
-                    <h3 class="disque-titre">{{disque.titre}}</h3>
                     <div class="disque-infos">
-                        <span class="disque-qte">{{disque.qte}} Ex.</span>
-                        <span class="disque-prix">{{disque.prix.toPrecision(4)}} CHF</span>
+                        <h3 class="disque-titre">{{disque.titre}}</h3>
+                        <div class="disque-sub">
+                            <span class="disque-qte">{{disque.qte}} Ex.</span>
+                            <span class="disque-prix">{{disque.prix.toPrecision(4)}} CHF</span>
+                        </div>
                     </div>
                 </router-link>
                 <button01 class="disque-bouton" @click="ajouterAuPanier(disque)" taille="90">Ajouter au panier</button01>
@@ -25,6 +27,12 @@ export default {
     name: "Disque",
     components: {
         Button01,
+    },
+
+    computed: {
+        pointerEvents() {
+            return this.$store.state.panierEtat === true ? 'none' : 'unset';
+        }
     },
 
     methods: {
@@ -51,8 +59,7 @@ export default {
     }
 
     .disque {
-        background-color: #191919BB;
-        border: 2px solid var(--white);
+        background-color: var(--blackTrans);
         border-radius: 10px;
         position: relative;
         color: var(--white);
@@ -67,7 +74,7 @@ export default {
     }
 
     .disque:hover {
-        transform: translateY(-10px);
+        cursor: pointer;
     }
 
     .disque .sold-out {
@@ -86,6 +93,7 @@ export default {
         color: var(--red);
         user-select: none;
         z-index: 50;
+        cursor: default;
     }
 
     .disque-detail-link {
@@ -99,13 +107,17 @@ export default {
         margin: 0 auto;
     }
 
+    .disque .disque-infos {
+        min-height: 100px;
+    }
+
     .disque .disque-titre {
         font-family: 'Garamond', cursive;
-        font-size: 2rem;
+        font-size: 1.9rem;
         margin: .75rem 0 0 0;
     }
 
-    .disque .disque-infos {
+    .disque .disque-sub {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -113,8 +125,20 @@ export default {
         margin-bottom: 2rem;
     }
 
-    .disque .disque-infos .disque-qte {
+    .disque .disque-sub .disque-qte {
         font-style: italic;
         color: var(--whiteTrans)
+    }
+
+    @media screen and (max-width: 1000px) {
+        .disque {
+            width: calc(100% / 2 - 4em);
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .disque {
+            width: calc(100% / 1 - 4em);
+        }
     }
 </style>

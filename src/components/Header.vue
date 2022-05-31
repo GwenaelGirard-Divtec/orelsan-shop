@@ -50,7 +50,7 @@ export default {
         justify-content: center;
         align-items: center;
         width: 100%;
-        background-color: white;
+        background-color: var(--white);
         height: var(--info-height);
     }
 

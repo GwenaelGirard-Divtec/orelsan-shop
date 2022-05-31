@@ -2,18 +2,23 @@
   <div class="commande">
     <Back></Back>
     <h2>Résumé de votre commande : </h2>
-    <Resume />
+      <DisquesListe :disques="this.$store.state.panier"
+                    :suppression="false"
+                    :header="true"
+                    :footer="true"/>
   </div>
 </template>
 
 <script>
 
 import Resume from '@/components/Resume.vue'
+import DisquesListe from "@/components/DisquesListe";
 import Back from '@/components/Back.vue'
 
 export default {
     name: 'Commande',
     components: {
+        DisquesListe,
         Resume,
         Back
     },

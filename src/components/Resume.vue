@@ -1,4 +1,25 @@
 <template>
+    <div class="articles">
+        <div class="article" v-for="disque in this.$store.state.panier">
+            <div class="article-image" :style="{backgroundImage: setImageArticle(disque.img)}"></div>
+            <div class="article-titre">{{ disque.titre }}</div>
+            <div class="article-qte">{{disque.qtyAchat}}</div>
+            <div class="article-prix-unit">{{disque.prix.toPrecision(4)}} CHF</div>
+            <div class="article-prix">{{this.getPrix(disque.prix, disque.qtyAchat)}} CHF</div>
+        </div>
+    </div>
+
+    <!--
+    <div class="article" v-for="disque in this.$store.state.panier">
+        <div class="article-image" :style="{backgroundImage: setImageArticle(disque.img)}"></div>
+        <div class="article-titre">{{ disque.titre }}</div>
+        <div class="article-qte-unit">{{disque.qtyAchat}}</div>
+        <div class="article-prix">{{disque.prix.toPrecision(4)}} CHF</div>
+        <div class="article-qte">{{this.getPrix(disque.prix, disque.qtyAchat)}} CHF</div>
+        <div class="article-suppr" @click="this.$store.commit('retirerPanier', disque)"><span class="material-icons">close</span></div>
+    </div>
+    -->
+
     <table>
         <thead>
         <tr>
@@ -37,17 +58,41 @@ export default {
         getPrix(prix, qte) {
             return (prix*qte).toPrecision(4);
         },
-    },
 
-    computed: {
-        getPrixTotalPanier() {
-            return this.$store.getters.getPrixTotalPanier
-        }
-    }
+        setImageArticle(img) {
+            return `url("${img}")`
+        },
+    },
 }
 </script>
 
 <style scoped>
+
+.article {
+    display: grid;
+    grid-template-columns: 100px 5fr .5fr 1fr 1fr;
+    height: 100px;
+}
+
+.article div {
+    border: var(--black) solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article div.article-image {
+    background-size: calc(100% - 1em);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.article div.article-titre {
+    justify-content: flex-start;
+}
+
+
+
     table {
         width: 100%;
     }
