@@ -77,7 +77,7 @@ export default {
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        height: 70%;
+        height: 60%;
     }
 
     .header .panier-apercu {

@@ -1,16 +1,19 @@
 <template>
     <Header />
     <router-view/>
+    <Footer v-if="this.$route.name !== '/disque'"/>
 </template>
 
 <script>
 
 import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
     name: "App",
     components: {
         Header,
+        Footer
     }
 }
 </script>
@@ -38,6 +41,7 @@ export default {
     --whiteTrans: rgba(237, 237, 237, 0.7);
     --black : rgb(25, 25, 25);
     --blackTrans : rgba(25, 25, 25, 0.9);
+    --gray: #525456;
     --bleu: #322783;
     --red: #d51125;
     --green: #00963f;
