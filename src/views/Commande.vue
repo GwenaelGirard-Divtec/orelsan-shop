@@ -27,6 +27,8 @@ export default {
         if(this.$store.state.panier.length === 0) {
             this.$router.push('/')
         }
+
+        window.scrollTo(0,0);
     }
 }
 </script>

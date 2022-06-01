@@ -3,8 +3,8 @@
         <span class="avertissement">{{this.$store.state.maxQtyAchat}} exemplaire{{this.$store.state.maxQtyAchat > 1 ? "s" : ""}} de chaque édition par commande.</span>
         <div class="header">
             <h1 style="display: none;">Orelsan Shop Civilisation New Album</h1>
-            <div class="icone-civ"></div>
-            <div class="logo-civ"></div>
+            <div class="icone-civ" :style="{backgroundImage: 'url(\'' + require('@/assets/img/logos/icone_civ.png') + '\')'}"></div>
+            <div class="logo-civ" :style="{backgroundImage: 'url(\'' + require('@/assets/img/logos/logo_civ.png') + '\')'}"></div>
             <div class="panier-apercu">
                 <div v-show="this.$route.matched.some(({ name }) => name === 'magasin')">
                     <span class="material-icons" @click="this.$store.commit('ouvrirFermerPanier')">{{ changeIcone }}</span>
@@ -63,7 +63,6 @@ export default {
     }
 
     .header .icone-civ {
-        background-image: url("/public/logos/icone_civ.png");
         background-repeat: no-repeat;
         background-position: left;
         background-size: contain;
@@ -73,7 +72,6 @@ export default {
 
     .header .logo-civ {
         width: 100%;
-        background-image: url("/public/logos/logo_civ.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
