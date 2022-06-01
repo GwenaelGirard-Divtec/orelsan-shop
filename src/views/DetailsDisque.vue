@@ -54,7 +54,7 @@ export default {
 
     .details-disque {
         position: relative;
-        height: calc(100vh - (var(--header-height) + var(--info-height)));
+        height: calc(100vh - var(--header-height) - var(--info-height));
         display: flex;
         flex-direction: column;
         justify-content: center;

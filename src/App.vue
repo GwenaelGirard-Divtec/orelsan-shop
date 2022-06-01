@@ -52,6 +52,7 @@ export default {
 
     --info-height: 30px;
     --header-height: 100px;
+    --footer-height: 200px;
 }
 
 * {

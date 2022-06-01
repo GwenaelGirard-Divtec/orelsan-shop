@@ -42,13 +42,10 @@ export default {
 </script>
 
 <style>
-    .home {
-        display: flex;
-        position: relative;
-    }
 
     .magasin {
         position: relative;
+        margin: 10em 0;
     }
 
     .panier {

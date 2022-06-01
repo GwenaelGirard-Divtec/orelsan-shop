@@ -125,7 +125,7 @@ export default {
 }
 
 .disque-liste div.disque-prix {
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .disque-liste div.disque-suppr span:hover {

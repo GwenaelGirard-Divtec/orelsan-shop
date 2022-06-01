@@ -1,6 +1,6 @@
 <template>
     <header>
-        <span class="avertissement">{{this.$store.state.maxQtyAchat}} exemplaire{{this.$store.state.maxQtyAchat > 1 ? "s" : ""}} de chaque édition par commande.</span>
+        <span v-if="this.$route.name === 'magasin' || this.$route.name === '/disque'" class="avertissement">{{this.$store.state.maxQtyAchat}} exemplaire{{this.$store.state.maxQtyAchat > 1 ? "s" : ""}} de chaque édition par commande.</span>
         <div class="header">
             <h1 style="display: none;">Orelsan Shop Civilisation New Album</h1>
             <div class="icone-civ" :style="{backgroundImage: 'url(\'' + require('@/assets/img/logos/icone_civ.png') + '\')'}"></div>

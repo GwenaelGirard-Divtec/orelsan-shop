@@ -32,7 +32,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    margin-top: 3em;
+    height: var(--footer-height);
 }
 
 footer div {
